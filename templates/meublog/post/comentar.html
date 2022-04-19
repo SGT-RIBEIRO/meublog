@@ -1,0 +1,12 @@
+{% extends 'meublog/base.html' %}
+{% block titulo %}
+    Comente
+{% endblock %}
+
+{% block conteudo %}
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Comentar">
+    </form>
+{% endblock %}

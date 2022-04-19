@@ -1,0 +1,31 @@
+{% extends 'meublog/base.html' %}
+{% block titulo %}
+    << Meu Blog >>
+{% endblock %}
+{% block conteudo %}
+<div id="content">
+
+    {% if messages %}
+        {% for m in messages %}
+            <p>{{ m }}</p>
+        {% endfor %}
+    {% endif %}
+    
+    {% for p in posts %}
+    <div class="box-post">
+        <h2>
+            <a href="{% url 'meublog:detalhe' p.slug p.id %}">{{ p.titulo }}</a>
+        </h2>
+        <p class="date">
+            Publicado em {{ p.publicado }} por {{ p.autor }}
+        </p>
+        <p>
+            {{ p.corpo|truncatewords:15|linebreaks }}
+        </p>
+    </div>
+    {% endfor %}
+
+
+    {% include 'paginacao.html' with page=page_obj %}
+</div>
+{% endblock %}
